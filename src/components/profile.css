@@ -1,5 +1,5 @@
 .primary{
-    color: brown;
+    color: yellowgreen;
 }
 .user{
     vertical-align: middle;
@@ -10,4 +10,10 @@
 
 .img{
     border-radius: 50%;
+}
+.row{
+    text-align: center;
+    /* margin-left: -20px; */
+    /* margin-right: -20px; */
+    margin: 0px 10px 0px 10px;
 }

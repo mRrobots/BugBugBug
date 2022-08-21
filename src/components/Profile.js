@@ -10,18 +10,37 @@ function Profile() {
   return (
       <div className='center'>
         <div className='profile'>
-          <h1 className='primary'>My Profile</h1>
+          <h1 className='primary'>Profile</h1>
           <img 
             src={User_pic} 
             alt='User' 
             className='user'>
           </img>
+          <p><strong>Mosis Mdlalose</strong></p>
+          <p>Computer Science</p>
           <p><strong>Email: </strong>{currentUser?.email}</p>
           <p>
             <strong>Email verified: </strong>
             {`${currentUser?.emailVerified}`}
           </p>
-          <button onClick={() => signOut(auth)}>Sign Out</button>
+          <div className='row'>
+            <button
+                className='row'
+                onClick={
+                () => 
+                signOut(auth)
+                }
+                >Log Out
+            </button>
+            <button
+                className='row'
+                // onClick={
+                // () => 
+                // signOut(auth)
+                // }
+                >Edit Profile
+                </button>
+            </div>
         </div>
       </div>
   )
