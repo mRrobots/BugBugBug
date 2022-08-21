@@ -4,7 +4,7 @@ import './styleform.css'
 import {signInWithEmailAndPassword, sendEmailVerification} from 'firebase/auth'
 import {auth} from '../conf/fireconf'
 import {useNavigate} from 'react-router-dom'
-import {useAuthValue} from './AuthContext'
+import {useAuthValue} from './AuthContext' //globilise our user details
 
 
 function Login(){
@@ -18,22 +18,29 @@ function Login(){
   const {setTimeActive} = useAuthValue()
   const navigate = useNavigate()
 
-  /*a simple function component that check if the user exist,and verified the email?
-   if : not verified, then send a verification email
-   else : take user to home page
-  */
+    /*
+        a simple function component that check if the user exist,and verified the email?
+        if : not verified, then send a verification email
+        else : take user to home page
+    */
   const login = e => {
     e.preventDefault()
     signInWithEmailAndPassword(auth, email, password)
     .then(() => {
-      if(!auth.currentUser.emailVerified) {
+        /*
+            if user is not verified yet
+            navigate him to verify(/verify-email) 
+            else Profile(/)
+        */
+       if(!auth.currentUser.emailVerified) {
         sendEmailVerification(auth.currentUser)
         .then(() => {
           setTimeActive(true)
           navigate('/verify-email')
         })
       .catch(err => alert(err.message))
-    }else{
+    }
+    else{
       navigate('/')
     }
     })
@@ -66,6 +73,9 @@ function Login(){
         <p>
          
           <Link to='/register'>  Don't have and account? Create one here</Link>
+          <br></br>
+          <Link to='/forgot_password'>  Forgot Password?</Link>
+
         </p>
       </div>
     </div>

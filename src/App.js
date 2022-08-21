@@ -10,8 +10,10 @@ import {onAuthStateChanged} from 'firebase/auth'
 import PrivateRoute from './components/PrivateRoute'
 import {AuthProvider} from './components/AuthContext'
 import {Navigate} from 'react-router-dom'
+import ForgotPassword from './components/Forgot_Password';
 
 function App() {
+
   const [currentUser, setCurrentUser] = useState(null)
   const [timeActive, setTimeActive] = useState(false)
 
@@ -40,6 +42,11 @@ function App() {
             ? <Register/>
             : <Navigate to='/' replace/>
           } />
+          <Route path='/forgot_password' element={
+          !currentUser?.emailVerified
+          ?<ForgotPassword/>
+          :<Navigate to='/' replace/>}
+           />
           <Route path='/verify-email' element={<VerifyEmail/>} /> 
         </Routes>  
       </AuthProvider>
