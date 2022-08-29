@@ -36,10 +36,10 @@ function ForgotPassword(){
                     </button>
                 </form> 
                 <button
-                 type="button"
-                 onClick={
-                    ()=>
-                    navigate('/login')
+                    type="button"
+                    onClick={
+                        ()=>
+                        navigate('/login')
                 }
                     >
                         Login Here

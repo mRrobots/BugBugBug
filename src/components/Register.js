@@ -6,6 +6,9 @@ import {createUserWithEmailAndPassword, sendEmailVerification} from 'firebase/au
 import { useAuthValue } from "./AuthContext";
 import './styleform.css'
 
+
+export const CorrectEmail = (str = "") => str.includes('@');
+
 function Register(){
 
     //Declare some state variable...
@@ -26,13 +29,12 @@ function Register(){
                 setError("Passwords do not match")
             }
         }
-
         return isValid
     }
 
     // register the user
     // will change this later for specified error
-    const register = e =>{
+    const register = e => {
         e.preventDefault()
         setError('')
         if(validatePassword()){
@@ -40,10 +42,12 @@ function Register(){
             .then(() =>{
                 sendEmailVerification(auth.currentUser)
                 .then(() =>{
+                    //registered
                     setTimeActive(true)
                     navigate('/verify-email')
                 }).catch((err) => alert(err.message))
             })
+            //network error
             .catch(err => setError(err.message))
         }
 

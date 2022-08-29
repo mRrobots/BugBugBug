@@ -4,7 +4,19 @@ import {useState, useEffect} from 'react'
 import {auth} from '../conf/fireconf'
 import {sendEmailVerification} from 'firebase/auth'
 import {useNavigate} from 'react-router-dom'
+import Login from './Login'
 
+
+
+export function AuthContextEmail(){
+  const {user} = "Mosis"
+  return user? 'Hello there ${user}' : "Please Login";
+}
+
+export function EmailCheck(email){
+  return email.includes('@');
+}
+ 
 function VerifyEmail() {
 
   const {currentUser} = useAuthValue()

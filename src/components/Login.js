@@ -6,7 +6,9 @@ import {auth} from '../conf/fireconf'
 import {useNavigate} from 'react-router-dom'
 import {useAuthValue} from './AuthContext' //globilise our user details
 
-
+export function EmailCheck(email){
+  return email.includes('@');
+} 
 function Login(){
 
     //declare some state variable
@@ -14,7 +16,6 @@ function Login(){
   const [password, setPassword] = useState('') 
   const [error, setError] = useState('')
   
-
   const {setTimeActive} = useAuthValue()
   const navigate = useNavigate()
 
@@ -52,6 +53,7 @@ function Login(){
     <div className='center'>
       <div className='auth'>
         <h1>Login</h1>
+        {/* this appearsif there is error */}
         {error && <div className='auth__error'>{error}</div>}
         <form onSubmit={login} name='login_form'>
           <input 
@@ -71,7 +73,7 @@ function Login(){
           <button type='submit'>Login</button>
         </form>
         <p>
-         
+
           <Link to='/register'>  Don't have and account? Create one here</Link>
           <br></br>
           <Link to='/forgot_password'>  Forgot Password?</Link>
